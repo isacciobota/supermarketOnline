@@ -18,7 +18,7 @@ li a {
     padding: 15px 15px;
 }
 li a:hover {
-    color: #e6b800;
+    color: #df4529;
     text-decoration: none;
 }
 * {
@@ -40,6 +40,9 @@ p{
   font-family: Georgia, sans-serif;
   font-size: 20px;
 }
+text{
+  font-family: 'proxima-nova', sans-serif;
+}
 #descriere{
   display: block;
   margin:auto;
@@ -53,7 +56,7 @@ p{
   text-decoration:none;
 }
 #icon:hover{
-  color:#e6b800;
+  color:#df4529;
   text-decoration:none;
 }
 #aboutmeimg{
@@ -91,6 +94,15 @@ p{
 #here:hover{
   color:#999;
 }
+#noMarginLeft{
+    margin-left:50px;
+  }
+#noMarginRight{
+    margin-right:20px;
+  }
+#noMarginRight2{
+    margin-right:40px;
+  }
 .headerinsta{
   width:90%;
   margin:auto;
@@ -125,6 +137,15 @@ p{
   -webkit-filter: brightness(60%);
 }
 @media (max-width: 800px) {
+  #noMarginLeft{
+    margin-left:0;
+  }
+  #noMarginRight{
+      margin-right:0;
+    }
+  #noMarginRight2{
+      margin-right:0;
+    }
   #alb{
     width:100%;
   }
@@ -163,7 +184,6 @@ p{
 }
 @media (max-width: 601px) {
   #descriere{
-
     width:95%;
   }
   #aboutmeimg{
