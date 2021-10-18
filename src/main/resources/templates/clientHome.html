@@ -76,90 +76,19 @@
 
 <img src="Poze/homeClientSus.png" width="100%" height="auto">
 <hr id="produse">
-
 <div class="container d-flex justify-content-center mt-50 mb-50">
     <div class="row">
-        <div class="col-md-4 mt-2">
+        <div th:each="produs : ${produse}" class="col-md-4 mt-2">
             <div class="card">
                 <div class="card-body">
                     <div class="card-img-actions"> <img src="Poze/apple.png" class="card-img img-fluid" alt=""> </div>
                 </div>
                 <div class="card-body bg-light text-center">
                     <div class="mb-2">
-                        <h4 class="font-weight-semibold mb-2">Apples</h4>
+                        <h4 class="font-weight-semibold mb-2" th:text="${produs.name}"></h4>
                     </div>
-                    <h3 class="mb-0 font-weight-semibold">$2</h3>
-                   <button style="margin-top:25px" type="button" class="btn btn-outline-danger btn-round"><i class="fa fa-cart-plus mr-2"></i> Add to cart</button>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 mt-2">
-            <div class="card">
-                <div class="card-body">
-                    <div class="card-img-actions"> <img src="Poze/apple.png" class="card-img img-fluid" width="96" height="350" alt=""> </div>
-                </div>
-                <div class="card-body bg-light text-center">
-                    <div class="mb-2">
-                        <h4 class="font-weight-semibold mb-2">Apples</h4>
-                    </div>
-                    <h3 class="mb-0 font-weight-semibold">$2</h3>
-                    <button style="margin-top:25px" type="button" class="btn btn-outline-danger btn-round"><i class="fa fa-cart-plus mr-2"></i> Add to cart</button>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 mt-2">
-            <div class="card">
-                <div class="card-body">
-                    <div class="card-img-actions"> <img src="Poze/apple.png" class="card-img img-fluid" width="96" height="350" alt=""> </div>
-                </div>
-                <div class="card-body bg-light text-center">
-                    <div class="mb-2">
-                        <h4 class="font-weight-semibold mb-2">Apples</h4>
-                    </div>
-                    <h3 class="mb-0 font-weight-semibold">$2</h3>
-                    <button style="margin-top:25px" type="button" class="btn btn-outline-danger btn-round"><i class="fa fa-cart-plus mr-2"></i> Add to cart</button>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 mt-2">
-            <div class="card">
-                <div class="card-body">
-                    <div class="card-img-actions"> <img src="Poze/apple.png" class="card-img img-fluid" width="96" height="350" alt=""> </div>
-                </div>
-                <div class="card-body bg-light text-center">
-                    <div class="mb-2">
-                        <h4 class="font-weight-semibold mb-2">Apples</h4>
-                    </div>
-                    <h3 class="mb-0 font-weight-semibold">$2</h3>
-                    <button style="margin-top:25px" type="button" class="btn btn-outline-danger btn-round"><i class="fa fa-cart-plus mr-2"></i> Add to cart</button>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 mt-2">
-            <div class="card">
-                <div class="card-body">
-                    <div class="card-img-actions"> <img src="Poze/apple.png" class="card-img img-fluid" width="96" height="350" alt=""> </div>
-                </div>
-                <div class="card-body bg-light text-center">
-                    <div class="mb-2">
-                        <h4 class="font-weight-semibold mb-2">Apples</h4>
-                    </div>
-                    <h3 class="mb-0 font-weight-semibold">$2</h3>
-                    <button style="margin-top:25px" type="button" class="btn btn-outline-danger btn-round"><i class="fa fa-cart-plus mr-2"></i> Add to cart</button>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 mt-2">
-            <div class="card">
-                <div class="card-body">
-                    <div class="card-img-actions"> <img src="Poze/apple.png" class="card-img img-fluid" width="96" height="350" alt=""> </div>
-                </div>
-                <div class="card-body bg-light text-center">
-                    <div class="mb-2">
-                        <h4 class="font-weight-semibold mb-2">Apples</h4>
-                    </div>
-                    <h3 class="mb-0 font-weight-semibold">$2</h3>
-                    <button style="margin-top:25px" type="button" class="btn btn-outline-danger btn-round"><i class="fa fa-cart-plus mr-2"></i> Add to cart</button>
+                    <h3 class="mb-0 font-weight-semibold" th:text="'$' + ${produs.price}"></h3>
+                    <button style="margin-top:25px" type="button" action="/ceva" class="btn btn-outline-danger btn-round"><i class="fa fa-cart-plus mr-2"></i> Add to cart</button>
                 </div>
             </div>
         </div>

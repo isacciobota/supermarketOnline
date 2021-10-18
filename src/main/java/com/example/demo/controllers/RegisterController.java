@@ -1,9 +1,13 @@
 package com.example.demo.controllers;
 
-import com.example.demo.exceptions.AccountExists;
-import com.example.demo.exceptions.UsernameAlreadyExistsException;
+import com.example.demo.exceptions.*;
+import com.example.demo.model.Order;
+import com.example.demo.model.Product;
 import com.example.demo.model.User;
+import com.example.demo.services.OrderService;
+import com.example.demo.services.ProductService;
 import com.example.demo.services.UserService;
+import org.graalvm.compiler.core.common.type.ArithmeticOpTable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -28,11 +32,12 @@ public class RegisterController {
         {
             return "index";
         }
-        return "index";
+        return "clientHome";
     }
     @PostMapping("/login")
     public String login(@ModelAttribute User user, Model model){
         model.addAttribute("user",user);
+        model.addAttribute("produse",ProductService.getAllProducts());
         try{
             UserService.checkUsernameAndPassword(user.getUsername(),user.getPassword());
         }
@@ -45,5 +50,23 @@ public class RegisterController {
             return "adminHome";
         }
         return "index";
+    }
+    @PostMapping("/ceva")
+    public String ceva(@ModelAttribute Product produs,Model model)
+    {
+        model.addAttribute("produs",produs);
+        Order order=new Order();
+        try {
+            order.addProduct(produs);
+        }
+        catch (NotEnoughQuantity e)
+        {
+
+        }
+        catch (ProductDoesNotExist e)
+        {
+
+        }
+        return "clientHome";
     }
 }
