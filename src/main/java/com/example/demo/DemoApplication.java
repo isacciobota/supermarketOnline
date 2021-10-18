@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.example.demo.services.OrderService;
 import com.example.demo.services.ProductService;
 import com.example.demo.services.UserService;
 import org.springframework.boot.SpringApplication;
@@ -11,6 +12,7 @@ public class DemoApplication {
 	public static void main(String[] args) {
 		UserService.initDatabase();
 		ProductService.initDatabase();
+		OrderService.initDatabase();
 		SpringApplication.run(DemoApplication.class, args);
 	}
 
