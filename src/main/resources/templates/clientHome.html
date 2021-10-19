@@ -1,5 +1,5 @@
 <! DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org">
+<html xmlns:th="https://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 
 <head>
     <title> Home </title>
@@ -88,7 +88,8 @@
                         <h4 class="font-weight-semibold mb-2" th:text="${produs.name}"></h4>
                     </div>
                     <h3 class="mb-0 font-weight-semibold" th:text="'$' + ${produs.price}"></h3>
-                    <button style="margin-top:25px" type="button" action="/ceva" class="btn btn-outline-danger btn-round"><i class="fa fa-cart-plus mr-2"></i> Add to cart</button>
+                    <form action="#" th:action="@{/ceva}" th:object="${produs}" method="post">
+                        <input type="submit" style="margin-top:25px" value="Add to cart" class="btn btn-outline-danger btn-round"></input></form>
                 </div>
             </div>
         </div>

@@ -12,18 +12,30 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 public class RegisterController {
-
     @GetMapping("/")
     public String greetingForm(Model model) {
         model.addAttribute("user", new User());
+        model.addAttribute("ok", Boolean.FALSE);
+        model.addAttribute("ok2", Boolean.FALSE);
+        return "index";
+    }
+    @GetMapping("/ceva")
+    public String comanda(Model model) {
+        model.addAttribute("user", new User());
+        model.addAttribute("ok", Boolean.FALSE);
+        model.addAttribute("ok2", Boolean.FALSE);
         return "index";
     }
 
     @PostMapping("/register")
     public String greetingSubmit(@ModelAttribute User user, Model model) {
         model.addAttribute("user", user);
+        model.addAttribute("produse",ProductService.getAllProducts());
+        model.addAttribute("ok2", Boolean.TRUE);
         try {
             user.setRole("client");
             UserService.addUser(user.getUsername(), user.getPassword(), user.getRole(), user.getName(), user.getAddress(), user.getEmail());
@@ -38,6 +50,11 @@ public class RegisterController {
     public String login(@ModelAttribute User user, Model model){
         model.addAttribute("user",user);
         model.addAttribute("produse",ProductService.getAllProducts());
+        model.addAttribute("ok", Boolean.TRUE);
+        Product p =new Product();
+        model.addAttribute("produs",p);
+        System.out.println(p.getName());
+        System.out.println(p.getName());
         try{
             UserService.checkUsernameAndPassword(user.getUsername(),user.getPassword());
         }
@@ -52,12 +69,14 @@ public class RegisterController {
         return "index";
     }
     @PostMapping("/ceva")
-    public String ceva(@ModelAttribute Product produs,Model model)
+    public String ceva(@ModelAttribute User user, Model model)
     {
-        model.addAttribute("produs",produs);
+        model.addAttribute("user",user);
+        model.addAttribute("produse",ProductService.getAllProducts());
+        model.addAttribute("ok", Boolean.TRUE);
         Order order=new Order();
-        try {
-            order.addProduct(produs);
+     /*   try {
+         //   order.addProduct();
         }
         catch (NotEnoughQuantity e)
         {
@@ -66,7 +85,7 @@ public class RegisterController {
         catch (ProductDoesNotExist e)
         {
 
-        }
+        }*/
         return "clientHome";
     }
 }

@@ -52,6 +52,8 @@
 
 <div style="position: -webkit-sticky; position: sticky; top:0; z-index: 1;">
     <nav class="navbar navbar-expand-md bg-white p-0">
+        <p th:if="${ok}">Wrong username or password</p>
+        <p th:if="${ok2}">Username Already exists</p>
         <button class="navbar-toggler text-center m-auto" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <i class="fas fa-bars mt-2 mb-2" id="baresaubari"></i>
         </button>
@@ -106,6 +108,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header border-bottom-0">
+                <p th:if="${ok}">Wrong username or password</p>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -141,6 +144,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header border-bottom-0">
+                <p th:if="${ok2}">Username Already exists</p>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
