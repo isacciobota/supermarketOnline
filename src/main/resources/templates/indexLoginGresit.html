@@ -9,116 +9,11 @@
     <link rel='stylesheet' th:href="@{https://use.fontawesome.com/releases/v5.5.0/css/all.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/CSS/homestyle.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/CSS/popupstyle.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/CSS/homeClientStyle.css}">
-    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js}">
-    <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js}">
     <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js}"></script>
     <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js}"></script>
     <script th:src="@{https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js}"></script>
-
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script  src="js/script.js"></script>
     <style>
-        body {
-        font: 400 15px Lato, sans-serif;
-        line-height: 1.8;
-        color: #818181;
-      }
-      h2 {
-        font-size: 24px;
-        text-transform: uppercase;
-        color: #303030;
-        font-weight: 600;
-        margin-bottom: 30px;
-      }
-      h4 {
-        font-size: 19px;
-        line-height: 1.375em;
-        color: #303030;
-        font-weight: 400;
-        margin-bottom: 30px;
-      }
-      .jumbotron {
-        background-color: #f4511e;
-        color: #fff;
-        padding: 100px 25px;
-        font-family: Montserrat, sans-serif;
-      }
-      .container-fluid {
-        padding: 60px 50px;
-      }
-      .bg-grey {
-        background-color: #f6f6f6;
-      }
-      .logo-small {
-        color: #f4511e;
-        font-size: 50px;
-      }
-      .logo {
-        color: #f4511e;
-        font-size: 200px;
-      }
-      .thumbnail {
-        padding: 0 0 15px 0;
-        border: none;
-        border-radius: 0;
-      }
-      .thumbnail img {
-        width: 100%;
-        height: 100%;
-        margin-bottom: 10px;
-      }
-      .carousel-control.right, .carousel-control.left {
-        background-image: none;
-        color: #f4511e;
-      }
-      .carousel-indicators li {
-        border-color: #f4511e;
-      }
-      .carousel-indicators li.active {
-        background-color: #f4511e;
-      }
-      .item h4 {
-        font-size: 19px;
-        line-height: 1.375em;
-        font-weight: 400;
-        font-style: italic;
-        margin: 70px 0;
-      }
-      .item span {
-        font-style: normal;
-      }
-
-      .slideanim {visibility:hidden;}
-      .slide {
-        animation-name: slide;
-        -webkit-animation-name: slide;
-        animation-duration: 1s;
-        -webkit-animation-duration: 1s;
-        visibility: visible;
-      }
-      @keyframes slide {
-        0% {
-          opacity: 0;
-          transform: translateY(70%);
-        }
-        100% {
-          opacity: 1;
-          transform: translateY(0%);
-        }
-      }
-      @-webkit-keyframes slide {
-        0% {
-          opacity: 0;
-          -webkit-transform: translateY(70%);
-        }
-        100% {
-          opacity: 1;
-          -webkit-transform: translateY(0%);
-        }
-      }
     .dropbtn {
       background-color: white;
       color: white;
@@ -164,25 +59,25 @@
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav nav w-100">
                 <li class="nav-item text-center text-md-right">
-                <a href="#" class="navbar-brand">
-                      <!-- Logo Image -->
-                      <img src="Poze/Logo.svg" width="45" alt="" class="d-inline-block align-middle mr-2" id="noMarginLeft">
-                      <img style="margin-top: 7px;" src="Poze/LogoScris.svg" width="65" alt="" class="d-inline-block align-middle mr-2">
-                </a></li>
+                    <a href="#" class="navbar-brand">
+                        <!-- Logo Image -->
+                        <img src="Poze/Logo.svg" width="45" alt="" class="d-inline-block align-middle mr-2" id="noMarginLeft">
+                        <img style="margin-top: 7px;" src="Poze/LogoScris.svg" width="65" alt="" class="d-inline-block align-middle mr-2">
+                    </a></li>
             </ul>
             <ul class="navbar-nav justify-content-end nav w-100">
                 <li class="nav-item text-center text-md-right mr-md-2">
-                <div class="dropdown">
-                  <button class="dropbtn">
+                    <div class="dropdown">
+                        <button class="dropbtn">
 
-                        <a href="#" class="man"><text>Connect |</text>
-                        <i style="font-size: 35px" class="far fa-user" id="noMarginRight"></i></a>
-                  </button>
-                  <div class="dropdown-content" id="noMarginRight2">
-                    <a data-toggle="modal" data-target="#loginModal">Login</a>
-                    <a data-toggle="modal" data-target="#registerModal">Register</a>
-                  </div>
-                </div></li>
+                            <a href="#" class="man"><text>Connect |</text>
+                                <i style="font-size: 35px" class="far fa-user" id="noMarginRight"></i></a>
+                        </button>
+                        <div class="dropdown-content" id="noMarginRight2">
+                            <a data-toggle="modal" data-target="#loginModal" id="MyBtn">Login</a>
+                            <a data-toggle="modal" data-target="#registerModal">Register</a>
+                        </div>
+                    </div></li>
             </ul>
         </div>
     </nav>
@@ -191,7 +86,6 @@
 <img src="Poze/homeSus.png" width="100%" height="auto">
 <hr>
 <div id="descriere">
-    <h2>Our Values</h2>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla metus lorem, ultrices at luctus sed,
         consectetur id ipsum. Phasellus sollicitudin magna nec nisl ullamcorper, ut bibendum felis egestas.
         Interdum et malesuada fames ac ante ipsum primis in faucibus. Maecenas lacinia augue vel enim sollicitudin vulputate.
@@ -200,58 +94,6 @@
 </div>
 <hr>
 <center> <img src="Poze/homeMijloc.jpg" width="70%" height="auto"> </center>
-<hr>
-
-<div class="container d-flex justify-content-center mt-50 mb-50">
-    <div class="row">
-        <div th:each="produs : ${produse}" class="col-md-4 mt-2">
-            <div class="card">
-                <div class="card-body">
-                    <div class="card-img-actions"> <img src="Poze/apple.png" class="card-img img-fluid" alt=""> </div>
-                </div>
-                <div class="card-body bg-light text-center">
-                    <div class="mb-2">
-                        <h4 class="font-weight-semibold mb-2" th:text="${produs.name}"></h4>
-                    </div>
-                    <h3 class="mb-0 font-weight-semibold" th:text="'$' + ${produs.price}"></h3>
-                    <form action="#" th:action="@{/ceva}" th:object="${produs}" method="post">
-                        <input type="submit" style="margin-top:25px" value="Add to cart" class="btn btn-outline-danger btn-round"></input></form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<hr>
-
-<!-- Container (Contact Section) -->
-<div id="contact" class="container-fluid bg-grey">
-    <h2 class="text-center">CONTACT</h2>
-    <div class="row">
-        <div class="col-sm-5">
-            <p>Contact us and we'll get back to you within 24 hours.</p>
-            <p><span class="glyphicon glyphicon-map-marker"></span> Romania</p>
-            <p><span class="glyphicon glyphicon-phone"></span> +40 123456789</p>
-            <p><span class="glyphicon glyphicon-envelope"></span> freshmarket@gmail.com</p>
-        </div>
-        <div class="col-sm-7 slideanim">
-            <div class="row">
-                <div class="col-sm-6 form-group">
-                    <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
-                </div>
-                <div class="col-sm-6 form-group">
-                    <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
-                </div>
-            </div>
-            <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea><br>
-            <div class="row">
-                <div class="col-sm-12 form-group">
-                    <button class="btn btn-default btn-outline-danger" type="submit">Send</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 <hr>
 
@@ -259,11 +101,6 @@
     <a href="https://www.facebook.com/isac.ciobota" target="_blank" style="margin: 0 20px;" class='fab fa-facebook-square' id="icon"></a>
     <a href="https://www.instagram.com/isacciobota/?hl=en" target="_blank" class='fab fa-instagram' id="icon"></a>
 </div>
-
-<footer>
-    <p style="text-align:center; font-size:10px; color:black">
-        @ Ciobota Isac, Bancila Emanuel - Proiect PW 2021</p>
-</footer>
 
 <!-- Popup pentru login -->
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -301,7 +138,7 @@
         </div>
     </div>
 </div>
-    <!-- Pana aici popup pt login -->
+<!-- Pana aici popup pt login -->
 
 <!-- Popup pentru register -->
 <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -341,36 +178,9 @@
                         Username Already exists</p>
                 </div> </div> </div>
     </div> </div>
-    <!-- Pana aici popup pt register -->
-
-<script>
-$(document).ready(function(){
-  $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
-    if (this.hash !== "") {
-      event.preventDefault();
-
-      var hash = this.hash;
-
-      $('html, body').animate({
-        scrollTop: $(hash).offset().top
-      }, 900, function(){
-        window.location.hash = hash;
-      });
-    }
-  });
-
-  $(window).scroll(function() {
-    $(".slideanim").each(function(){
-      var pos = $(this).offset().top;
-
-      var winTop = $(window).scrollTop();
-        if (pos < winTop + 600) {
-          $(this).addClass("slide");
-        }
-    });
-  });
-})
-</script>
+<!-- Pana aici popup pt register -->
+<!-- Custom Script -->
+<script  src="js/scriptLoginGresit.js"></script>
 </body>
 
 </html>

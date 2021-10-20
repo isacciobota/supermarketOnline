@@ -7,7 +7,6 @@ import com.example.demo.model.User;
 import com.example.demo.services.OrderService;
 import com.example.demo.services.ProductService;
 import com.example.demo.services.UserService;
-import org.graalvm.compiler.core.common.type.ArithmeticOpTable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +29,27 @@ public class RegisterController {
         model.addAttribute("ok2", Boolean.FALSE);
         return "index";
     }
+    @GetMapping("/cart")
+    public String cart(Model model) {
+        model.addAttribute("user", new User());
+        model.addAttribute("ok", Boolean.FALSE);
+        model.addAttribute("ok2", Boolean.FALSE);
+        return "cart";
+    }
+    @GetMapping("/orders")
+    public String orders(Model model) {
+        model.addAttribute("user", new User());
+        model.addAttribute("ok", Boolean.FALSE);
+        model.addAttribute("ok2", Boolean.FALSE);
+        return "orders";
+    }
+    @GetMapping("/clientHome")
+    public String clientHome(Model model) {
+        model.addAttribute("user", new User());
+        model.addAttribute("ok", Boolean.FALSE);
+        model.addAttribute("ok2", Boolean.FALSE);
+        return "clientHome";
+    }
 
     @PostMapping("/register")
     public String greetingSubmit(@ModelAttribute User user, Model model) {
@@ -42,7 +62,7 @@ public class RegisterController {
         }
         catch (UsernameAlreadyExistsException e)
         {
-            return "index";
+            return "indexRegisterGresit";
         }
         return "clientHome";
     }
@@ -66,7 +86,7 @@ public class RegisterController {
             }
             return "adminHome";
         }
-        return "index";
+        return "indexLoginGresit";
     }
     @PostMapping("/ceva")
     public String ceva(@ModelAttribute User user, Model model)
