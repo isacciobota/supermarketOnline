@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Order {
-    private ArrayList<Product> lista=new ArrayList<Product>();
-    private String user;
-    private int pretTotal;
-    private int contor=0;
+    public ArrayList<Product> lista=new ArrayList<Product>();
+    public String user="";
+    public int pretTotal=0;
+    public int contor=0;
 
     public Order() {
 
@@ -30,8 +30,9 @@ public class Order {
 
     public int pretTotal(){
         int s=0;
-        for (int i = 0; i < contor; i++){
-            s = s +  ProductService.getPrice(lista.get(i).getName(), lista.get(i).getQuantity());
+        for(Product p : lista)
+        {
+            s+=p.getPrice();
         }
         return s;
     }

@@ -47,7 +47,7 @@
 <hr id="produse">
 <div class="container d-flex justify-content-center mt-50 mb-50">
     <div class="row">
-        <div th:each="produs : ${produse}" class="col-md-4 mt-2">
+        <div th:each="produs,iStat : ${produse}" class="col-md-4 mt-2">
             <div class="card">
                 <div class="card-body">
                     <div class="card-img-actions"> <img src="Poze/apple.png" class="card-img img-fluid" alt=""> </div>
@@ -57,8 +57,8 @@
                         <h4 class="font-weight-semibold mb-2" th:text="${produs.name}"></h4>
                     </div>
                     <h3 class="mb-0 font-weight-semibold" th:text="'$' + ${produs.price}"></h3>
-                    <form action="#" th:action="@{/ceva}" th:object="${produs}" method="post">
-                        <input type="submit" style="margin-top:25px" value="Add to cart" class="btn btn-outline-danger btn-round"></input></form>
+                    <form action="#" th:action="@{/ceva}" th:object="${produs}" method="post" th:with="id=${produs.name}">
+                        <input type="submit" style="margin-top:25px" value="Add to cart" class="btn btn-outline-danger btn-round" th:with="id=${produs.name}"></input></form>
                 </div>
             </div>
         </div>
