@@ -9,44 +9,36 @@
     <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js}">
     <link rel='stylesheet' th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}">
     <link rel='stylesheet' th:href="@{https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js}">
-    <link rel="stylesheet" type="text/css" th:href="@{/CSS/ordersStyle.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/CSS/removeProductStyle.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/CSS/popupstyle.css}">
 </head>
 
 <body>
 <div class="container d-flex justify-content-center mt-50 mb-50">
     <div class="card">
-        <table class="table">
-            <thead class="thead-dark">
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Total</th>
-                <th scope="col">User</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-            </tr>
-            </tbody>
-        </table>
-        <div style="display: flex; justify-content: center; align-items: center; margin-bottom:30px">
+
+
+        <div style="display: flex; justify-content: center; align-items: center; margin-bottom:15px; margin-top:30px;">
             <img src="Poze/Logo.svg" width="45" alt="" class="d-inline-block align-middle mr-2" id="noMarginLeft">
             <img style="margin-top: 7px;" src="Poze/LogoScris.svg" width="65" alt="" class="d-inline-block align-middle mr-2">
         </div>
+
+        <div style="display: flex; justify-content: center; align-items: center;">
+        <div class="text-center" style="width:50%;">
+            <form action="#" method="post">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="inputName2" placeholder="Name">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="inputCode2" placeholder="Code">
+                </div>
+                <button type="submit" class="btn btn-outline-danger btn-block btn-round">Remove Product</button>
+            </form>
+        </div>
+        </div>
+
         <div style="display: flex; justify-content: center; align-items: center; margin-bottom:30px">
-            <a href="/clientHome">&leftarrow;<span style="color:black;">Back to shop</span></a>
+            <a href="/adminHome">&leftarrow;<span style="color:black;">Back to shop</span></a>
         </div>
     </div>
 </div>

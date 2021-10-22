@@ -50,6 +50,41 @@ public class RegisterController {
         model.addAttribute("ok2", Boolean.FALSE);
         return "clientHome";
     }
+    @GetMapping("/adminHome")
+    public String adminHome(Model model) {
+        model.addAttribute("user", new User());
+        model.addAttribute("ok", Boolean.FALSE);
+        model.addAttribute("ok2", Boolean.FALSE);
+        return "adminHome";
+    }
+    @GetMapping("/productsAdmin")
+    public String productsAdmin(Model model) {
+        model.addAttribute("user", new User());
+        model.addAttribute("ok", Boolean.FALSE);
+        model.addAttribute("ok2", Boolean.FALSE);
+        return "productsAdmin";
+    }
+    @GetMapping("/ordersAdmin")
+    public String ordersAdmin(Model model) {
+        model.addAttribute("user", new User());
+        model.addAttribute("ok", Boolean.FALSE);
+        model.addAttribute("ok2", Boolean.FALSE);
+        return "ordersAdmin";
+    }
+    @GetMapping("/addProduct")
+    public String addProduct(Model model) {
+        model.addAttribute("user", new User());
+        model.addAttribute("ok", Boolean.FALSE);
+        model.addAttribute("ok2", Boolean.FALSE);
+        return "addProduct";
+    }
+    @GetMapping("/removeProduct")
+    public String removeProduct(Model model) {
+        model.addAttribute("user", new User());
+        model.addAttribute("ok", Boolean.FALSE);
+        model.addAttribute("ok2", Boolean.FALSE);
+        return "removeProduct";
+    }
 
     @PostMapping("/register")
     public String greetingSubmit(@ModelAttribute User user, Model model) {
