@@ -61,20 +61,10 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>10&#36;</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>20&#36;</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>30&#36;</td>
+            <tr th:each="order,i:${orders}">
+                <th scope="row" th:text="${i.index}"></th>
+                <td th:text="${order.user}"></td>
+                <td th:text="${order.pretTotal()}">&#36;</td>
             </tr>
             </tbody>
         </table>
@@ -95,33 +85,20 @@
                     <th scope="col">Quantity</th>
                     <th scope="col">Code</th>
                     <th scope="col">Price</th>
+                    <th scope="col">Remove Button</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Apple</td>
-                    <td>Food</td>
-                    <td>20</td>
-                    <td>AF1</td>
-                    <td>2&#36;</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Apple</td>
-                    <td>Food</td>
-                    <td>20</td>
-                    <td>AF1</td>
-                    <td>2&#36;</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Apple</td>
-                    <td>Food</td>
-                    <td>20</td>
-                    <td>AF1</td>
-                    <td>2&#36;</td>
-                </tr>
+                <tr th:each="produs,i:${produse}">
+                    <th scope="row" th:text="${i.index}"></th>
+                    <td th:text="${produs.name}"></td>
+                    <td th:text="${produs.category}"></td>
+                    <td th:text="${produs.quantity}"></td>
+                    <td th:text="${produs.code}"></td>
+                    <td th:text="${produs.price}">&#36;</td>
+                    <td><form action="#" th:action="@{/admnProd}" th:object="${produs}" method="post" th:with="numeB=${produs.name}">
+                    <input type="submit" style="margin-top:25px" th:value="${produs.name}"  class="btn btn-outline-danger btn-round"  th:name="numeB" th:with="numeB=${produs.name}"></input></form>
+                </td></tr>
                 </tbody>
             </table>
         </div>
@@ -133,21 +110,21 @@
     <h2 class="text-center" style="margin-bottom:20px">Add Product</h2>
 
         <div class="text-center">
-            <form action="#" method="post">
+            <form action="#" th:action="@{/adaugare}" th:object="${produsul}" method="post">
                 <div class="form-group">
-                    <input type="text" class="form-control" id="inputName" placeholder="Name">
+                    <input type="text" class="form-control" id="inputName" th:field="*{name}" placeholder="Name">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" id="inputCategory" placeholder="Category">
+                    <input type="text" class="form-control" id="inputCategory" th:field="*{category}" placeholder="Category">
                 </div>
                 <div class="form-group">
-                    <input type="number" class="form-control" id="inputQuantity" placeholder="Quantity">
+                    <input type="number" class="form-control" id="inputQuantity" th:field="*{quantity}" placeholder="Quantity">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" id="inputCode" placeholder="Code">
+                    <input type="text" class="form-control" id="inputCode" th:field="*{code}" placeholder="Code">
                 </div>
                 <div class="form-group">
-                    <input type="number" class="form-control" id="inputPrice" placeholder="Price">
+                    <input type="number" class="form-control" id="inputPrice" th:field="*{price}" placeholder="Price">
                 </div>
                 <button type="submit" class="btn btn-outline-danger btn-block btn-round">Add Product</button>
             </form>
@@ -161,12 +138,9 @@
     <h2 class="text-center" style="margin-bottom:20px">Remove Product</h2>
 
     <div class="text-center">
-        <form action="#" method="post">
+        <form action="#" th:action="@{/stergere}" th:object="${produsul}"  method="post">
             <div class="form-group">
-                <input type="text" class="form-control" id="inputName2" placeholder="Name">
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" id="inputCode2" placeholder="Code">
+                <input type="text" class="form-control" id="inputName2" th:field="*{name}" placeholder="Name">
             </div>
             <button type="submit" class="btn btn-outline-danger btn-block btn-round">Remove Product</button>
         </form>

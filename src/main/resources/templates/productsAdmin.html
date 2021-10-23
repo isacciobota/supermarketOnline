@@ -27,29 +27,13 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Apple</td>
-                <td>Food</td>
-                <td>20</td>
-                <td>AF1</td>
-                <td>2&#36;</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Apple</td>
-                <td>Food</td>
-                <td>20</td>
-                <td>AF1</td>
-                <td>2&#36;</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Apple</td>
-                <td>Food</td>
-                <td>20</td>
-                <td>AF1</td>
-                <td>2&#36;</td>
+            <tr th:each="produs,i:${produse}">
+                <th scope="row" th:text="${i.index}"></th>
+                <td th:text="${produs.name}"></td>
+                <td th:text="${produs.category}"></td>
+                <td th:text="${produs.quantity}"></td>
+                <td th:text="${produs.code}"></td>
+                <td th:text="${produs.price}">&#36;</td>
             </tr>
             </tbody>
         </table>

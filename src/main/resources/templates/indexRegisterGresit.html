@@ -104,7 +104,7 @@
         <div th:each="produs : ${produse}" class="col-md-4 mt-2">
             <div class="card">
                 <div class="card-body">
-                    <div class="card-img-actions"> <img src="Poze/apple.png" class="card-img img-fluid" alt=""> </div>
+                    <div class="card-img-actions"> <img th:src="'Poze/'+${produs.name}+'.png'" class="card-img img-fluid" alt=""> </div>
                 </div>
                 <div class="card-body bg-light text-center">
                     <div class="mb-2">

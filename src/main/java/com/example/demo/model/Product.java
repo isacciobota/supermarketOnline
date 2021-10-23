@@ -8,8 +8,8 @@ public class Product {
     private String code;
     private String name;
     private String category;
-    private Integer quantity;
-    private Integer price;
+    private Integer quantity=0;
+    private Integer price=0;
 
     public Product() {
     }

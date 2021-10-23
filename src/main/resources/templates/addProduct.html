@@ -25,21 +25,21 @@
 
         <div style="display: flex; justify-content: center; align-items: center;">
             <div class="text-center" style="width:50%">
-                <form action="#" method="post">
+                <form action="#" th:action="@{/adaugare}" th:object="${produsul}" method="post">
                     <div class="form-group">
-                        <input type="text" class="form-control" id="inputName" placeholder="Name">
+                        <input type="text" class="form-control" id="inputName" th:field="*{name}" placeholder="Name">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="inputCategory" placeholder="Category">
+                        <input type="text" class="form-control" id="inputCategory" th:field="*{category}" placeholder="Category">
                     </div>
                     <div class="form-group">
-                        <input type="number" class="form-control" id="inputQuantity" placeholder="Quantity">
+                        <input type="number" class="form-control" id="inputQuantity" th:field="*{quantity}" placeholder="Quantity">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="inputCode" placeholder="Code">
+                        <input type="text" class="form-control" id="inputCode" th:field="*{code}" placeholder="Code">
                     </div>
                     <div class="form-group">
-                        <input type="number" class="form-control" id="inputPrice" placeholder="Price">
+                        <input type="number" class="form-control" id="inputPrice" th:field="*{price}" placeholder="Price">
                     </div>
                     <button type="submit" class="btn btn-outline-danger btn-block btn-round">Add Product</button>
                 </form>

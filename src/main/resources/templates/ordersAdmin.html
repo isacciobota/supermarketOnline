@@ -24,20 +24,11 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>10&#36;</td>
+            <tr th:each="order,i:${orders}">
+                <th scope="row" th:text="${i.index}"></th>
+                <td th:text="${order.user}"></td>
+                <td th:text="${order.pretTotal()}">&#36;</td>
             </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>20&#36;</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>30&#36;</td>
             </tr>
             </tbody>
         </table>

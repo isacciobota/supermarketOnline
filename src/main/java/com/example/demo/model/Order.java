@@ -46,8 +46,10 @@ public class Order {
         if(!temp1)
             throw new ProductDoesNotExist(product.getName());
         for (Product k : ProductService.productRepository.find())
-            if (Objects.equals(product.getName(), k.getName()))
-                temp3=k.getQuantity();
+            if (product.getName().equals(k.getName())) {
+                temp3 = k.getQuantity();
+                System.out.println(k.getName());
+            }
 
         if(exista(product)) {
             for (int i = 0; i < contor; i++)

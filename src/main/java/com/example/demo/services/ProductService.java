@@ -40,9 +40,9 @@ public class ProductService {
         productRepository.insert(new Product(name, category, code, quantity, price));
     }
 
-    public static void removeProduct(String name, String code) throws ProductDoesNotExist {
+    public static void removeProduct(String name) throws ProductDoesNotExist {
         for (Product product : productRepository.find()) {
-            if (Objects.equals(name, product.getName()) && Objects.equals(code, product.getCode())){
+            if (Objects.equals(name, product.getName())){
                 productRepository.remove(product);
                 return;
             }
