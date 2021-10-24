@@ -60,8 +60,6 @@ public class RegisterController {
         model.addAttribute("ok", Boolean.FALSE);
         model.addAttribute("ok2", Boolean.FALSE);
         model.addAttribute("prettotal", comanda.pretTotal());
-        int i=1;
-        List<Order> o = new ArrayList<Order>();
         List<Product> pds=comanda.lista;
         model.addAttribute("produse",pds);
         return "cart";
@@ -174,6 +172,7 @@ public class RegisterController {
         {
             return "indexRegisterGresit";
         }
+        userLogat=user.getUsername();
         return "clientHome";
     }
     @PostMapping("/login")
@@ -238,11 +237,14 @@ public class RegisterController {
         model.addAttribute("ok2", Boolean.TRUE);
         try {
             ProductService.addProduct(produsul.getName(),produsul.getCategory(),produsul.getCode(),produsul.getQuantity(),produsul.getPrice());
+            model.addAttribute("produse",ProductService.getAllProducts());
         }
         catch (ProductAlreadyExistsException e)
         {
+            model.addAttribute("produse",ProductService.getAllProducts());
             return "indexRegisterGresit";
         }
+        model.addAttribute("produse",ProductService.getAllProducts());
         return "adminHome";
     }
     @PostMapping("/stergere")
@@ -254,11 +256,14 @@ public class RegisterController {
         model.addAttribute("ok2", Boolean.TRUE);
         try {
             ProductService.removeProduct(produsul.getName());
+            model.addAttribute("produse",ProductService.getAllProducts());
         }
         catch (ProductDoesNotExist e)
         {
+            model.addAttribute("produse",ProductService.getAllProducts());
             return "adminHome";
         }
+        model.addAttribute("produse",ProductService.getAllProducts());
         return "adminHome";
     }
     @PostMapping("/admnProd")
@@ -271,11 +276,77 @@ public class RegisterController {
         System.out.println(k+" aaA");
         try {
             ProductService.removeProduct(k);
+            model.addAttribute("produse",ProductService.getAllProducts());
         } catch (ProductDoesNotExist doesNotExist) {
             return "adminHome";
         }
         System.out.println(k+" aaA");
         return "adminHome";
+    }
+    @PostMapping("/clientPrd")
+    public String cleintStergereProdus(@ModelAttribute Product produsul, Model model,@RequestParam(value="numeB",required = false)String k) {
+        model.addAttribute("user",new User());
+        model.addAttribute("ok", Boolean.TRUE);
+        model.addAttribute("orders",OrderService.getAllOrders());
+        model.addAttribute("produsul",produsul);
+        System.out.println(k+" aaA");
+        ArrayList<Product> l=new ArrayList<Product>();
+        for(Product x: comanda.lista)
+        {
+            if(!k.equals(x.getName()))
+                l.add(x);
+        }
+        comanda.lista=l;
+        comanda.contor--;
+        model.addAttribute("produse",comanda.lista);
+        model.addAttribute("prettotal", comanda.pretTotal());
+        return "cart";
+    }
+    @PostMapping("/decprod")
+    public String decprod(@ModelAttribute Product produsul, Model model,@RequestParam(value="numeB",required = false)String k) {
+        model.addAttribute("user",new User());
+        model.addAttribute("ok", Boolean.TRUE);
+        model.addAttribute("orders",OrderService.getAllOrders());
+        model.addAttribute("produsul",produsul);
+        System.out.println(k+" aaA");
+        ArrayList<Product> l=new ArrayList<Product>();
+        for(Product x: comanda.lista)
+        {
+            if(!k.equals(x.getName()))
+                l.add(x);
+            else
+            {
+                x.setQuantity(x.getQuantity()-1);
+                l.add(x);
+            }
+        }
+        comanda.lista=l;
+        model.addAttribute("produse",comanda.lista);
+        model.addAttribute("prettotal", comanda.pretTotal());
+        return "cart";
+    }
+    @PostMapping("/incprod")
+    public String incprod(@ModelAttribute Product produsul, Model model,@RequestParam(value="numeB",required = false)String k) {
+        model.addAttribute("user",new User());
+        model.addAttribute("ok", Boolean.TRUE);
+        model.addAttribute("orders",OrderService.getAllOrders());
+        model.addAttribute("produsul",produsul);
+        System.out.println(k+" aaA");
+        ArrayList<Product> l=new ArrayList<Product>();
+        for(Product x: comanda.lista)
+        {
+            if(!k.equals(x.getName()))
+                l.add(x);
+            else
+            {
+                x.setQuantity(x.getQuantity()+1);
+                l.add(x);
+            }
+        }
+        comanda.lista=l;
+        model.addAttribute("produse",comanda.lista);
+        model.addAttribute("prettotal", comanda.pretTotal());
+        return "cart";
     }
     @PostMapping("/admnOrd")
     public String adminStergereOrders(@ModelAttribute Product produsul, Model model) {
@@ -284,7 +355,8 @@ public class RegisterController {
         model.addAttribute("ok", Boolean.TRUE);
         model.addAttribute("orders",OrderService.getAllOrders());
         model.addAttribute("produsul",produsul);
-       OrderService.removeAllOrders();
+        OrderService.removeAllOrders();
+        model.addAttribute("orders",OrderService.getAllOrders());
         return "adminHome";
     }
 }

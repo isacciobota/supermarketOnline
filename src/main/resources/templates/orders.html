@@ -25,7 +25,7 @@
             </thead>
             <tbody>
             <tr th:each="order,i:${orders}">
-                <th scope="row" th:text="${i.index}"></th>
+                <th scope="row" th:text="${i.index}+1"></th>
                 <td th:text="${order.pretTotal()}">&#36;</td>
                 <td th:text="${order.user}"></td>
             </tr>

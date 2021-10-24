@@ -57,8 +57,8 @@
                         <h4 class="font-weight-semibold mb-2" th:text="${produs.name}"></h4>
                     </div>
                     <h3 class="mb-0 font-weight-semibold" th:text="'$' + ${produs.price}"></h3>
-                    <form action="#" th:action="@{/ceva}" th:object="${produs}" method="post" th:with="numeB=${produs.name}">
-                        <input type="submit" style="margin-top:25px" th:value="${produs.name}"  class="btn btn-outline-danger btn-round"  th:name="numeB" th:with="numeB=${produs.name}"></input></form>
+                    <form action="#" th:action="@{/ceva}" th:object="${produs}" method="post">
+                        <button type="submit" style="margin-top:25px" th:value="${produs.name}"  class="btn btn-outline-danger btn-round"  th:name="numeB">Add to cart</button></form>
                 </div>
             </div>
         </div>

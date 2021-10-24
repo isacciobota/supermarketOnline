@@ -62,13 +62,18 @@
             </thead>
             <tbody>
             <tr th:each="order,i:${orders}">
-                <th scope="row" th:text="${i.index}"></th>
+                <th scope="row" th:text="${i.index}+1"></th>
                 <td th:text="${order.user}"></td>
                 <td th:text="${order.pretTotal()}">&#36;</td>
             </tr>
             </tbody>
         </table>
     </div>
+</div><div style="display: flex; justify-content: center; align-items: center;">
+
+    <form action="#" th:action="@{/admnOrd}" th:object="${produsul}"  method="post">
+        <input type="submit" value="Delete all orders" class="btn btn-outline-danger btn-block btn-round"></input>
+    </form>
 </div>
 
 <hr>
@@ -85,19 +90,19 @@
                     <th scope="col">Quantity</th>
                     <th scope="col">Code</th>
                     <th scope="col">Price</th>
-                    <th scope="col">Remove Button</th>
+                    <th scope="col">Remove</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="produs,i:${produse}">
-                    <th scope="row" th:text="${i.index}"></th>
+                    <th scope="row" th:text="${i.index}+1"></th>
                     <td th:text="${produs.name}"></td>
                     <td th:text="${produs.category}"></td>
                     <td th:text="${produs.quantity}"></td>
                     <td th:text="${produs.code}"></td>
                     <td th:text="${produs.price}">&#36;</td>
                     <td><form action="#" th:action="@{/admnProd}" th:object="${produs}" method="post" th:with="numeB=${produs.name}">
-                    <input type="submit" style="margin-top:25px" th:value="${produs.name}"  class="btn btn-outline-danger btn-round"  th:name="numeB" th:with="numeB=${produs.name}"></input></form>
+                    <button type="submit" style="margin-top:25px" th:value="${produs.name}"  class="btn btn-outline-danger btn-round"  th:name="numeB" th:with="numeB=${produs.name}" th:text="'remove '+${produs.name}"></button></form>
                 </td></tr>
                 </tbody>
             </table>

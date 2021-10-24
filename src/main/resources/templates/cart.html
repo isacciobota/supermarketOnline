@@ -33,9 +33,18 @@
                         <div class="row text-muted" th:text="${produs.category}"></div>
                         <div class="row" th:text="${produs.name}"></div>
                     </div>
-                    <div class="col"> <a href="#">-</a><a href="#" class="border" th:text="${produs.quantity}"></a><a href="#">+</a> </div>
-                    <div class="col" th:text="${produs.price}+'$'">&#36; <span class="close">&#10005;</span></div>
-                </div>
+                    <div class="col">
+                        <form action="#" th:action="@{/decprod}" th:object="${produs}" method="post" th:with="numeB=${produs.name}">
+                            <button type="submit" style="margin-top:25px" th:value="${produs.name}" th:name="numeB" th:with="numeB=${produs.name}">-</button></form></div>
+
+                    <div class="col"><a href="#" class="border" th:text="${produs.quantity}"></a></div>
+
+                    <div class="col"><form action="#" th:action="@{/incprod}" th:object="${produs}" method="post" th:with="numeB=${produs.name}">
+                    <button type="submit" style="margin-top:25px" th:value="${produs.name}"  th:name="numeB" th:with="numeB=${produs.name}">+</button></form>
+                    </div><div class="col" th:text="${produs.price}+'$'">&#36; <span class="close">&#10005;</span></div>
+                     <form action="#" th:action="@{/clientPrd}" th:object="${produs}" method="post" th:with="numeB=${produs.name}">
+                    <button type="submit" style="margin-top:25px" th:value="${produs.name}"  class="btn btn-outline-danger btn-round"  th:name="numeB" th:with="numeB=${produs.name}">Delete</button></form>
+</div>
             </div>
             <div class="back-to-shop"><a href="/clientHome">&leftarrow;<span class="text-muted" style="color:black;">Back to shop</span></a></div>
         </div>

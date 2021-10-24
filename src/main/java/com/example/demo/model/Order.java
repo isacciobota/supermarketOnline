@@ -32,7 +32,7 @@ public class Order {
         int s=0;
         for(Product p : lista)
         {
-            s+=p.getPrice();
+            s+=p.getPrice()*p.getQuantity();
         }
         return s;
     }

@@ -25,7 +25,7 @@
             </thead>
             <tbody>
             <tr th:each="order,i:${orders}">
-                <th scope="row" th:text="${i.index}"></th>
+                <th scope="row" th:text="${i.index}+1"></th>
                 <td th:text="${order.user}"></td>
                 <td th:text="${order.pretTotal()}">&#36;</td>
             </tr>
@@ -34,7 +34,10 @@
         </table>
 
         <div style="display: flex; justify-content: center; align-items: center;">
-            <a href="/admnOrd"><button class="btn btn-outline-danger btn-block btn-round" style="margin-bottom:20px">Delete all orders</button></a>
+
+            <form action="#" th:action="@{/admnOrd}" th:object="${produsul}"  method="post">
+                <input type="submit" value="Delete all orders" class="btn btn-outline-danger btn-block btn-round"></input>
+            </form>
         </div>
 
         <div style="display: flex; justify-content: center; align-items: center; margin-bottom:30px">
