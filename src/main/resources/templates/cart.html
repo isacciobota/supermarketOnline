@@ -23,15 +23,15 @@
                         <img src="Poze/Logo.svg" width="45" alt="" class="d-inline-block align-middle mr-2" id="noMarginLeft">
                         <img style="margin-top: 7px;" src="Poze/LogoScris.svg" width="65" alt="" class="d-inline-block align-middle mr-2">
                     </div>
-                    <div class="col align-self-center text-right text-muted" th:text="${produse.size()} + 'items'"></div>
+                    <div class="col align-self-center text-right text-muted" th:text="${produse.size()} + ' items'"></div>
                 </div>
             </div>
             <div th:each="produs:${produse}" class="row border-top border-bottom">
                 <div class="row main align-items-center">
                     <div class="col-2"><img class="img-fluid" th:src="'/Poze/'+${produs.name}+'.png'"></div>
                     <div class="col">
-                        <div class="row text-muted" th:text="${produs.category}">Shirt</div>
-                        <div class="row" th:text="${produs.name}">Cotton T-shirt</div>
+                        <div class="row text-muted" th:text="${produs.category}"></div>
+                        <div class="row" th:text="${produs.name}"></div>
                     </div>
                     <div class="col"> <a href="#">-</a><a href="#" class="border" th:text="${produs.quantity}"></a><a href="#">+</a> </div>
                     <div class="col" th:text="${produs.price}+'$'">&#36; <span class="close">&#10005;</span></div>
