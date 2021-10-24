@@ -4,7 +4,6 @@ import com.example.demo.exceptions.*;
 import com.example.demo.model.Order;
 import com.example.demo.model.Product;
 import com.example.demo.model.User;
-import com.example.demo.model.ViewOrdersTableModel;
 import com.example.demo.services.OrderService;
 import com.example.demo.services.ProductService;
 import com.example.demo.services.UserService;
@@ -13,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.standard.expression.OrExpression;
 
+import java.awt.event.PaintEvent;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -85,7 +85,11 @@ public class RegisterController {
         model.addAttribute("user", new User());
         model.addAttribute("ok", Boolean.FALSE);
         model.addAttribute("ok2", Boolean.FALSE);
-        model.addAttribute("produse",ProductService.getAllProducts());
+        List<Product> l =new ArrayList<Product>();
+        for(Product p: ProductService.getAllProducts())
+            if(p.getQuantity()!=0)
+                l.add(p);
+        model.addAttribute("produse",l);
         model.addAttribute("orders",OrderService.getAllOrders());
         return "clientHome";
     }
@@ -150,10 +154,14 @@ public class RegisterController {
         {
             comanda.setUser(userLogat);
             OrderService.placeOrder(comanda);
+            for(Product p: ProductService.getAllProducts())
+                if(p.getQuantity()<=0)
+                    ProductService.removeProduct(p.getName());
             comanda=new Order();
+            model.addAttribute("produse",ProductService.getAllProducts());
 
-        } catch (CartIsEmptyException e) {
-            e.printStackTrace();
+        } catch (CartIsEmptyException | ProductDoesNotExist e) {
+            return "clientHome";
         }
         return "clientHome";
     }
@@ -161,7 +169,11 @@ public class RegisterController {
     @PostMapping("/register")
     public String greetingSubmit(@ModelAttribute User user, Model model) {
         model.addAttribute("user", user);
-        model.addAttribute("produse",ProductService.getAllProducts());
+        List<Product> l =new ArrayList<Product>();
+        for(Product p: ProductService.getAllProducts())
+            if(p.getQuantity()!=0)
+                l.add(p);
+        model.addAttribute("produse",l);
         model.addAttribute("orders",OrderService.getAllOrders());
         model.addAttribute("ok2", Boolean.TRUE);
         try {
@@ -178,7 +190,11 @@ public class RegisterController {
     @PostMapping("/login")
     public String login(@ModelAttribute User user, Model model) {
         model.addAttribute("user",user);
-        model.addAttribute("produse",ProductService.getAllProducts());
+        List<Product> l =new ArrayList<Product>();
+        for(Product p: ProductService.getAllProducts())
+            if(p.getQuantity()!=0)
+                l.add(p);
+        model.addAttribute("produse",l);
         model.addAttribute("orders",OrderService.getAllOrders());
         model.addAttribute("produsul",new Product());
         model.addAttribute("ok", Boolean.TRUE);
@@ -204,7 +220,11 @@ public class RegisterController {
     @PostMapping("/ceva")
     public String ceva(@ModelAttribute User user, Model model,@RequestParam(value="numeB",required = false)String k) {
         model.addAttribute("user",user);
-        model.addAttribute("produse",ProductService.getAllProducts());
+        List<Product> l =new ArrayList<Product>();
+        for(Product p: ProductService.getAllProducts())
+            if(p.getQuantity()!=0)
+                l.add(p);
+        model.addAttribute("produse",l);
         model.addAttribute("ok", Boolean.TRUE);
         model.addAttribute("orders",OrderService.getAllOrders());
         System.out.println(k+" aaA");
@@ -217,6 +237,11 @@ public class RegisterController {
         p.setQuantity(1);
         try {
         comanda.addProduct(p);
+            l =new ArrayList<Product>();
+            for(Product g: ProductService.getAllProducts())
+                if(g.getQuantity()!=0)
+                    l.add(g);
+            model.addAttribute("produse",l);
         }
         catch (NotEnoughQuantity e)
         {
