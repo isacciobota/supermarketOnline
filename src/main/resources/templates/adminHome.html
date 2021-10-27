@@ -70,7 +70,9 @@
                 </td>
 
                 <td th:text="${order.pretTotal()}">&#36;</td>
-                 <td><form action="#" th:action="@{/removeorder1}" th:object="${order}" method="post">
+                <td><form action="#" th:action="@{/seeproducts}" th:object="${order}" method="post">
+                <button type="submit" style="margin-top:25px" th:value="${i.index}"  class="btn btn-outline-danger btn-round"  th:name="numeB" th:text="${order.user}+'`s order'"></button></form>
+            </td><td><form action="#" th:action="@{/removeorder1}" th:object="${order}" method="post">
                 <button type="submit" style="margin-top:25px" th:value="${i.index}"  class="btn btn-outline-danger btn-round"  th:name="numeB">Remove</button></form>
             </td>
             </tr>
