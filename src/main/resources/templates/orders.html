@@ -21,13 +21,16 @@
                 <th scope="col">#</th>
                 <th scope="col">Total</th>
                 <th scope="col">User</th>
+                <th scope="col">See products</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="order,i:${orders}">
                 <th scope="row" th:text="${i.index}+1"></th>
                 <td th:text="${order.pretTotal()}">&#36;</td>
-                <td th:text="${order.user}"></td>
+                <td th:text="${order.user}"></td><td><form action="#" th:action="@{/seeproducts2}" th:object="${order}" method="post">
+                <button type="submit" style="margin-top:25px" th:value="${order.chestie}"  class="btn btn-outline-danger btn-round"  th:name="numeB">See order products</button></form>
+            </td>
             </tr>
             </tbody>
         </table>

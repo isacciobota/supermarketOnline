@@ -3,6 +3,8 @@ import com.example.demo.exceptions.ItemIsNotInTheCart;
 import com.example.demo.exceptions.NotEnoughQuantity;
 import com.example.demo.exceptions.ProductDoesNotExist;
 import com.example.demo.services.ProductService;
+import org.dizitart.no2.objects.Id;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -11,13 +13,16 @@ public class Order {
     public String user="";
     public int pretTotal=0;
     public int contor=0;
+    @Id
+    public String chestie;
 
     public Order() {
-
+chestie=this.toString();
     }
 
     public Order(String user) {
         this.user = user;
+        chestie=this.toString();
     }
 
     public boolean exista(Product produs){

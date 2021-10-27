@@ -2,14 +2,14 @@
 <html xmlns:th="https://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 
 <head>
-    <title> Orders </title>
+    <title> Products </title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js}">
     <link rel='stylesheet' th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}">
     <link rel='stylesheet' th:href="@{https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js}">
-    <link rel="stylesheet" type="text/css" th:href="@{/CSS/ordersAdminStyle.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/CSS/productsAdminStyle.css}">
 </head>
 
 <body>
@@ -19,38 +19,29 @@
             <thead class="thead-dark">
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">User</th>
-                <th scope="col">Total</th>
-                <th scope="col">Remove Order</th>
+                <th scope="col">Name</th>
+                <th scope="col">Category</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Code</th>
+                <th scope="col">Price</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="order,i:${orders}">
+            <tr th:each="produs,i:${produse}">
                 <th scope="row" th:text="${i.index}+1"></th>
-                <td><form action="#" th:action="@{/adminuser}" th:object="${order}" method="post">
-                <button type="submit" style="margin-top:25px" th:value="${order.user}"  class="btn btn-outline-danger btn-round"  th:name="numeB" th:text="${order.user}"></button></form>
-            </td>
-                <td th:text="${order.pretTotal()}">&#36;</td><td><form action="#" th:action="@{/removeorder}" th:object="${order}" method="post">
-                <button type="submit" style="margin-top:25px" th:value="${i.index}"  class="btn btn-outline-danger btn-round"  th:name="numeB">Remove</button></form>
-            </td>
-            </tr>
-            </tr>
+                <td th:text="${produs.name}"></td>
+                <td th:text="${produs.category}"></td>
+                <td th:text="${produs.quantity}"></td>
+                <td th:text="${produs.code}"></td>
+                <td th:text="${produs.price}">&#36;</td>
             </tbody>
         </table>
-
-        <div style="display: flex; justify-content: center; align-items: center;">
-
-            <form action="#" th:action="@{/admnOrd}" th:object="${produsul}"  method="post">
-                <input type="submit" value="Delete all orders" class="btn btn-outline-danger btn-block btn-round"></input>
-            </form>
-        </div>
-
         <div style="display: flex; justify-content: center; align-items: center; margin-bottom:30px">
             <img src="Poze/Logo.svg" width="45" alt="" class="d-inline-block align-middle mr-2" id="noMarginLeft">
             <img style="margin-top: 7px;" src="Poze/LogoScris.svg" width="65" alt="" class="d-inline-block align-middle mr-2">
         </div>
         <div style="display: flex; justify-content: center; align-items: center; margin-bottom:30px">
-            <a href="/adminHome">&leftarrow;<span style="color:black;">Back to shop</span></a>
+            <a href="/clientHome">&leftarrow;<span style="color:black;">Back to shop</span></a>
         </div>
     </div>
 </div>

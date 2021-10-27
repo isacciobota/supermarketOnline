@@ -1,0 +1,56 @@
+<! DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <title> Add Product </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js}">
+    <link rel='stylesheet' th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}">
+    <link rel='stylesheet' th:href="@{https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js}">
+    <link rel="stylesheet" type="text/css" th:href="@{/CSS/addProductStyle.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/CSS/popupstyle.css}">
+</head>
+
+<body>
+<div class="container d-flex justify-content-center mt-50 mb-50">
+    <div class="card">
+
+
+        <div style="display: flex; justify-content: center; align-items: center; margin-bottom:15px; margin-top:30px;">
+            <img src="Poze/Logo.svg" width="45" alt="" class="d-inline-block align-middle mr-2" id="noMarginLeft">
+            <img style="margin-top: 7px;" src="Poze/LogoScris.svg" width="65" alt="" class="d-inline-block align-middle mr-2">
+        </div>
+
+        <div style="display: flex; justify-content: center; align-items: center;">
+            <div class="text-center" style="width:50%">
+                <form action="#" th:action="@{/modificare}" th:object="${produsul}" method="post">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="inputName" th:field="*{name}" placeholder="Name">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="inputCategory" th:field="*{category}" placeholder="Category">
+                    </div>
+                    <div class="form-group">
+                        <input type="number" class="form-control" id="inputQuantity" th:field="*{quantity}" placeholder="Quantity">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="inputCode" th:field="*{code}" placeholder="Code">
+                    </div>
+                    <div class="form-group">
+                        <input type="number" class="form-control" id="inputPrice" th:field="*{price}" placeholder="Price">
+                    </div>
+                    <button type="submit" class="btn btn-outline-danger btn-block btn-round">Modify Product</button>
+                </form>
+            </div>
+        </div>
+
+        <div style="display: flex; justify-content: center; align-items: center; margin-bottom:30px">
+            <a href="/adminHome">&leftarrow;<span style="color:black;">Delete</span></a>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

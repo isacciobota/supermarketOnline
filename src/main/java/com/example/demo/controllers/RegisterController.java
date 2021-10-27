@@ -7,6 +7,7 @@ import com.example.demo.model.User;
 import com.example.demo.services.OrderService;
 import com.example.demo.services.ProductService;
 import com.example.demo.services.UserService;
+import org.graalvm.compiler.core.common.type.ArithmeticOpTable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -308,6 +309,23 @@ public class RegisterController {
         System.out.println(k+" aaA");
         return "adminHome";
     }
+    @PostMapping("/admnProd2")
+    public String adminStergereProdus2(@ModelAttribute Product produsul, Model model,@RequestParam(value="numeB",required = false)String k) {
+        model.addAttribute("user",new User());
+        model.addAttribute("produse",ProductService.getAllProducts());
+        model.addAttribute("ok", Boolean.TRUE);
+        model.addAttribute("orders",OrderService.getAllOrders());
+        model.addAttribute("produsul",produsul);
+        System.out.println(k+" aaA");
+        try {
+            ProductService.removeProduct(k);
+            model.addAttribute("produse",ProductService.getAllProducts());
+        } catch (ProductDoesNotExist doesNotExist) {
+            return "adminHome";
+        }
+        System.out.println(k+" aaA");
+        return "productsAdmin";
+    }
     @PostMapping("/clientPrd")
     public String cleintStergereProdus(@ModelAttribute Product produsul, Model model,@RequestParam(value="numeB",required = false)String k) {
         model.addAttribute("user",new User());
@@ -382,6 +400,96 @@ public class RegisterController {
         model.addAttribute("produsul",produsul);
         OrderService.removeAllOrders();
         model.addAttribute("orders",OrderService.getAllOrders());
+        return "adminHome";
+    }
+    @PostMapping("/removeorder")
+    public String removeorderadmin(@ModelAttribute Product produsul, Model model,@RequestParam(value="numeB",required = false)Integer i) {
+        model.addAttribute("user",new User());
+        model.addAttribute("ok", Boolean.TRUE);
+        model.addAttribute("produsul",produsul);
+        Order o=OrderService.getAllOrders().get(i);
+        orderRepository.remove(o);
+        model.addAttribute("orders",OrderService.getAllOrders());
+        return "ordersAdmin";
+    }
+
+    @PostMapping("/removeorder1")
+    public String removeorderadmin1(@ModelAttribute Product produsul, Model model,@RequestParam(value="numeB",required = false)Integer i) {
+        model.addAttribute("user",new User());
+        model.addAttribute("ok", Boolean.TRUE);
+        model.addAttribute("produse",ProductService.getAllProducts());
+        model.addAttribute("produsul",produsul);
+        Order o=OrderService.getAllOrders().get(i);
+        orderRepository.remove(o);
+        model.addAttribute("orders",OrderService.getAllOrders());
+        return "adminHome";
+    }
+    @PostMapping("/adminuser")
+    public String seeuserorders(@ModelAttribute Product produsul, Model model,@RequestParam(value="numeB",required = false)String k) {
+        model.addAttribute("user",new User());
+        model.addAttribute("ok", Boolean.TRUE);
+        model.addAttribute("produsul",produsul);
+        System.out.println(k+" aaA");
+        ArrayList<Order> l=new ArrayList<Order>();
+        for(Order x: OrderService.getAllOrders())
+        {
+            if(k.equals(x.getUser()))
+                l.add(x);
+        }
+        model.addAttribute("orders",l);
+        return "ordersAdmin";
+    }
+    @PostMapping("/seeproducts")
+    public String seeproductsadmin(@ModelAttribute Product produsul, Model model,@RequestParam(value="numeB",required = false)Integer i) {
+        model.addAttribute("user",new User());
+        model.addAttribute("ok", Boolean.TRUE);
+        model.addAttribute("produsul",produsul);
+        model.addAttribute("orders",OrderService.getAllOrders());
+        ArrayList<Product> l= OrderService.getAllOrders().get(i).lista;
+        model.addAttribute("produse",l);
+        return "productsAdmin";
+    }
+    @PostMapping("/seeproducts2")
+    public String seeproductsclient(@ModelAttribute Product produsul, Model model,@RequestParam(value="numeB",required = false)String k) {
+        model.addAttribute("user",new User());
+        model.addAttribute("ok", Boolean.TRUE);
+        model.addAttribute("produsul",produsul);
+        model.addAttribute("orders",OrderService.getAllOrders());
+        Order o=new Order();
+        for(Order x:OrderService.getAllOrders())
+        {
+            if(k.equals(x.chestie))
+            {
+                o=x;
+            }
+        }
+        model.addAttribute("produse",o.lista);
+        System.out.println(o.lista);
+        return "productsClient";
+    }
+    @PostMapping("/modify")
+    public String modifyadmin(@ModelAttribute Product produsul, Model model,@RequestParam(value="numeB",required = false)String k) throws ProductDoesNotExist {
+        model.addAttribute("user",new User());
+        model.addAttribute("ok", Boolean.TRUE);
+        model.addAttribute("orders",OrderService.getAllOrders());
+        Product p=new Product();
+        for(Product x:ProductService.getAllProducts())
+        {
+            if(k.equals(x.getName()))
+                p=x;
+        }
+        ProductService.removeProduct(p.getName());
+        model.addAttribute("produsul",p);
+        return "modifyProduct";
+    }
+    @PostMapping("/modificare")
+    public String modificareaadmin(@ModelAttribute Product produsul, Model model,@RequestParam(value="numeB",required = false)String k) throws ProductDoesNotExist, ProductAlreadyExistsException {
+        model.addAttribute("user",new User());
+        model.addAttribute("ok", Boolean.TRUE);
+        model.addAttribute("orders",OrderService.getAllOrders());
+        model.addAttribute("produsul",produsul);
+        ProductService.addProduct(produsul.getName(),produsul.getCategory(),produsul.getCode(),produsul.getQuantity(),produsul.getPrice());
+        model.addAttribute("produse",ProductService.getAllProducts());
         return "adminHome";
     }
 }
