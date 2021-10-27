@@ -10,6 +10,17 @@
     <link rel='stylesheet' th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}">
     <link rel='stylesheet' th:href="@{https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js}">
     <link rel="stylesheet" type="text/css" th:href="@{/CSS/ordersStyle.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/CSS/popupstyle.css}">
+    <style>
+        form{
+            margin:0px;
+            padding:0px;
+        }
+        td{
+            margin:0px;
+            padding:0px;
+        }
+    </style>
 </head>
 
 <body>
@@ -28,9 +39,12 @@
             <tr th:each="order,i:${orders}">
                 <th scope="row" th:text="${i.index}+1"></th>
                 <td th:text="${order.pretTotal()}">&#36;</td>
-                <td th:text="${order.user}"></td><td><form action="#" th:action="@{/seeproducts2}" th:object="${order}" method="post">
-                <button type="submit" style="margin-top:25px" th:value="${order.chestie}"  class="btn btn-outline-danger btn-round"  th:name="numeB">See order products</button></form>
-            </td>
+                <td th:text="${order.user}"></td>
+                <td><div style="width:50%">
+                <form style="margin-top:0px" action="#" th:action="@{/seeproducts2}" th:object="${order}" method="post">
+                <button type="submit" style="margin-top:0px" th:value="${order.chestie}"  class="btn btn-outline-danger btn-round"  th:name="numeB">See order products</button></form>
+                </div>
+                </td>
             </tr>
             </tbody>
         </table>
@@ -39,7 +53,7 @@
             <img style="margin-top: 7px;" src="Poze/LogoScris.svg" width="65" alt="" class="d-inline-block align-middle mr-2">
         </div>
         <div style="display: flex; justify-content: center; align-items: center; margin-bottom:30px">
-            <a href="/clientHome">&leftarrow;<span style="color:black;">Back to shop</span></a>
+            <a href="/clientHome">&leftarrow;<span `style="color:black;"`>Back to shop</span></a>
         </div>
     </div>
 </div>

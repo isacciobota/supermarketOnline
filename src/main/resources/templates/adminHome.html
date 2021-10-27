@@ -15,6 +15,20 @@
     <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js}"></script>
     <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js}"></script>
     <script th:src="@{https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js}"></script>
+    <style>
+        .numeUtilizator{
+            background-color:white;
+            border: none;
+            color:black;
+        }
+        .numeUtilizator:hover{
+            color:#df4529;
+        }
+        .numeUtilizator:focus{
+            border: none;
+            color:#df4529;
+        }
+    </style>
 </head>
 
 <body>
@@ -66,14 +80,14 @@
             <tr th:each="order,i:${orders}">
                 <th scope="row" th:text="${i.index}+1"></th>
                 <td><form action="#" th:action="@{/adminuser}" th:object="${order}" method="post">
-                    <button type="submit" style="margin-top:25px" th:value="${order.user}"  class="btn btn-outline-danger btn-round"  th:name="numeB" th:text="${order.user}"></button></form>
+                    <button type="submit" style="margin-top:0px" th:value="${order.user}" th:name="numeB" th:text="${order.user}" class="numeUtilizator"></button></form>
                 </td>
 
                 <td th:text="${order.pretTotal()}">&#36;</td>
                 <td><form action="#" th:action="@{/seeproducts}" th:object="${order}" method="post">
-                <button type="submit" style="margin-top:25px" th:value="${i.index}"  class="btn btn-outline-danger btn-round"  th:name="numeB">View</button></form>
+                <button type="submit" style="margin-top:0px" th:value="${i.index}"  class="btn btn-outline-danger btn-round"  th:name="numeB">View</button></form>
             </td><td><form action="#" th:action="@{/removeorder1}" th:object="${order}" method="post">
-                <button type="submit" style="margin-top:25px" th:value="${i.index}"  class="btn btn-outline-danger btn-round"  th:name="numeB">Remove</button></form>
+                <button type="submit" style="margin-top:0px" th:value="${i.index}"  class="btn btn-outline-danger btn-round"  th:name="numeB">Remove</button></form>
             </td>
             </tr>
             </tbody>
@@ -113,10 +127,10 @@
                     <td th:text="${produs.code}"></td>
                     <td th:text="${produs.price}">&#36;</td>
                     <td><form action="#" th:action="@{/admnProd}" th:object="${produs}" method="post" th:with="numeB=${produs.name}">
-                    <button type="submit" style="margin-top:25px" th:value="${produs.name}"  class="btn btn-outline-danger btn-round"  th:name="numeB" th:with="numeB=${produs.name}">Remove</button></form>
+                    <button type="submit" style="margin-top:0px" th:value="${produs.name}"  class="btn btn-outline-danger btn-round"  th:name="numeB" th:with="numeB=${produs.name}">Remove</button></form>
                 </td>
                     <td><form action="#" th:action="@{/modify}" th:object="${produs}" method="post">
-                        <button type="submit" style="margin-top:25px" th:value="${produs.name}"  class="btn btn-outline-danger btn-round"  th:name="numeB">Modify</button></form>
+                        <button type="submit" style="margin-top:0px" th:value="${produs.name}"  class="btn btn-outline-danger btn-round"  th:name="numeB">Modify</button></form>
                     </td>
                 </tr>
                 </tbody>
@@ -146,7 +160,9 @@
                 <div class="form-group">
                     <input type="number" class="form-control" id="inputPrice" th:field="*{price}" value="" placeholder="Price">
                 </div>
+                <div style="display: flex; justify-content: center; align-items: center;"><div style="width:25%">
                 <button type="submit" class="btn btn-outline-danger btn-block btn-round">Add Product</button>
+                </div></div>
             </form>
         </div>
 
@@ -162,7 +178,9 @@
             <div class="form-group">
                 <input type="text" class="form-control" id="inputName2" th:field="*{name}" placeholder="Name">
             </div>
+            <div style="display: flex; justify-content: center; align-items: center;"><div style="width:25%">
             <button type="submit" class="btn btn-outline-danger btn-block btn-round">Remove Product</button>
+            </div></div>
         </form>
     </div>
 
