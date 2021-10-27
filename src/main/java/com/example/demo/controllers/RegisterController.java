@@ -447,7 +447,7 @@ public class RegisterController {
         model.addAttribute("orders",OrderService.getAllOrders());
         ArrayList<Product> l= OrderService.getAllOrders().get(i).lista;
         model.addAttribute("produse",l);
-        return "productsAdmin";
+        return "productsAdmin2";
     }
     @PostMapping("/seeproducts2")
     public String seeproductsclient(@ModelAttribute Product produsul, Model model,@RequestParam(value="numeB",required = false)String k) {

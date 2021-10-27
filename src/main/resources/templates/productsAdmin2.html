@@ -1,0 +1,50 @@
+<! DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <title> Products </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js}">
+    <link rel='stylesheet' th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}">
+    <link rel='stylesheet' th:href="@{https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js}">
+    <link rel="stylesheet" type="text/css" th:href="@{/CSS/productsAdminStyle.css}">
+</head>
+
+<body>
+<div class="container d-flex justify-content-center mt-50 mb-50">
+    <div class="card">
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Category</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Code</th>
+                <th scope="col">Price</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="produs,i:${produse}">
+                <th scope="row" th:text="${i.index}+1"></th>
+                <td th:text="${produs.name}"></td>
+                <td th:text="${produs.category}"></td>
+                <td th:text="${produs.quantity}"></td>
+                <td th:text="${produs.code}"></td>
+                <td th:text="${produs.price}">&#36;</td>
+            </tbody>
+        </table>
+        <div style="display: flex; justify-content: center; align-items: center; margin-bottom:30px">
+            <img src="Poze/Logo.svg" width="45" alt="" class="d-inline-block align-middle mr-2" id="noMarginLeft">
+            <img style="margin-top: 7px;" src="Poze/LogoScris.svg" width="65" alt="" class="d-inline-block align-middle mr-2">
+        </div>
+        <div style="display: flex; justify-content: center; align-items: center; margin-bottom:30px">
+            <a href="/adminHome">&leftarrow;<span style="color:black;">Back to shop</span></a>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
