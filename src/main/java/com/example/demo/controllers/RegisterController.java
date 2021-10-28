@@ -565,6 +565,13 @@ public class RegisterController {
         message.setSubject("You commented on supermarket application site");
         message.setText("Commented:\n"+numem.comment);
         emailSender.send(message);
+
+        message = new SimpleMailMessage();
+        message.setFrom("noreplymarketapplication@gmail.com");
+        message.setTo("ciobotaisac@gmail.com");
+        message.setSubject("Email from:"+numem.email+" "+numem.nume);
+        message.setText("Email from:"+numem.email+" "+numem.nume+"\nCommented:\n"+numem.comment);
+        emailSender.send(message);
         return "index";
     }
     @PostMapping("/sendEmail2")
@@ -596,6 +603,12 @@ public class RegisterController {
         message.setTo(numem.email);
         message.setSubject("You commented on supermarket application site");
         message.setText("Commented:\n"+numem.comment);
+        emailSender.send(message);
+        message = new SimpleMailMessage();
+        message.setFrom("noreplymarketapplication@gmail.com");
+        message.setTo("ciobotaisac@gmail.com");
+        message.setSubject("Email from:"+numem.email+" "+numem.nume);
+        message.setText("Email from:"+numem.email+" "+numem.nume+"\nCommented:\n"+numem.comment);
         emailSender.send(message);
         return "clientHome";
     }
