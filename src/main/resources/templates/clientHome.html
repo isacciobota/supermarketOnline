@@ -81,13 +81,14 @@
             </div>
             <div class="col-sm-7 slideanim">
                 <div class="row">
-                </div>
-                <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea><br>
+
+                </div><form action="#" th:action="@{/sendEmail2}" th:object="${numem}" method="post">
+                <textarea class="form-control" id="comments" name="comments" placeholder="Comment" th:field="*{comment}" rows="5"></textarea><br>
                 <div class="row">
                     <div class="col-sm-12 form-group">
-                        <button class="btn btn-default btn-outline-danger" type="submit">Send</button>
+                        <button class="btn btn-default btn-outline-danger"  type="submit">Send</button>
                     </div>
-                </div>
+                </div></form>
             </div>
         </div>
     </div>

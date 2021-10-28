@@ -1,21 +1,28 @@
 package com.example.demo.controllers;
 
 import com.example.demo.exceptions.*;
+import com.example.demo.model.Numem;
 import com.example.demo.model.Order;
 import com.example.demo.model.Product;
 import com.example.demo.model.User;
 import com.example.demo.services.OrderService;
 import com.example.demo.services.ProductService;
 import com.example.demo.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.standard.expression.OrExpression;
+import org.springframework.mail.*;
 
 import java.awt.event.PaintEvent;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Properties;
 
 import static com.example.demo.services.OrderService.orderRepository;
 
@@ -32,6 +39,7 @@ public class RegisterController {
         model.addAttribute("ok", Boolean.FALSE);
         model.addAttribute("ok2", Boolean.FALSE);
         model.addAttribute("produse",ProductService.getAllProducts());
+        model.addAttribute("numem",new Numem());
         comanda=new Order();
         return "index";
     }
@@ -47,6 +55,7 @@ public class RegisterController {
     @GetMapping("/loginBad")
     public String loginBad(Model model) {
         model.addAttribute("orders",OrderService.getAllOrders());
+        model.addAttribute("numem",new Numem());
         model.addAttribute("user", new User());
         model.addAttribute("ok", Boolean.FALSE);
         model.addAttribute("ok2", Boolean.FALSE);
@@ -56,6 +65,7 @@ public class RegisterController {
     @GetMapping("/cart")
     public String cart(Model model) {
         model.addAttribute("orders",OrderService.getAllOrders());
+        model.addAttribute("numem",new Numem());
         model.addAttribute("user", new User());
         model.addAttribute("ok", Boolean.FALSE);
         model.addAttribute("ok2", Boolean.FALSE);
@@ -67,6 +77,7 @@ public class RegisterController {
     @GetMapping("/orders")
     public String orders(Model model) {
         model.addAttribute("produse",ProductService.getAllProducts());
+        model.addAttribute("numem",new Numem());
         List<Order>o=OrderService.getAllOrders();
         List<Order>k=new ArrayList<Order>();
         for(Order x: o)
@@ -82,6 +93,7 @@ public class RegisterController {
     }
     @GetMapping("/clientHome")
     public String clientHome(Model model) {
+        model.addAttribute("numem",new Numem());
         model.addAttribute("user", new User());
         model.addAttribute("ok", Boolean.FALSE);
         model.addAttribute("ok2", Boolean.FALSE);
@@ -126,6 +138,7 @@ public class RegisterController {
     @GetMapping("/addProduct")
     public String addProduct(Model model) {
         model.addAttribute("produsul",new Product());
+        model.addAttribute("numem",new Numem());
         model.addAttribute("produse",ProductService.getAllProducts());
         model.addAttribute("orders",OrderService.getAllOrders());
         model.addAttribute("user", new User());
@@ -146,6 +159,7 @@ public class RegisterController {
 
     @GetMapping("/cartButton")
     public String cartButton(@ModelAttribute User user, Model model) {
+        model.addAttribute("numem",new Numem());
         model.addAttribute("orders",OrderService.getAllOrders());
         model.addAttribute("user", user);
         model.addAttribute("produse",ProductService.getAllProducts());
@@ -168,6 +182,7 @@ public class RegisterController {
 
     @PostMapping("/register")
     public String greetingSubmit(@ModelAttribute User user, Model model) {
+        model.addAttribute("numem",new Numem());
         model.addAttribute("user", user);
         List<Product> l =new ArrayList<Product>();
         for(Product p: ProductService.getAllProducts())
@@ -189,6 +204,7 @@ public class RegisterController {
     }
     @PostMapping("/login")
     public String login(@ModelAttribute User user, Model model) {
+        model.addAttribute("numem",new Numem());
         model.addAttribute("user",user);
         List<Product> l =new ArrayList<Product>();
         for(Product p: ProductService.getAllProducts())
@@ -219,6 +235,7 @@ public class RegisterController {
     }
     @PostMapping("/ceva")
     public String ceva(@ModelAttribute User user, Model model,@RequestParam(value="numeB",required = false)String k) {
+        model.addAttribute("numem",new Numem());
         model.addAttribute("user",user);
         List<Product> l =new ArrayList<Product>();
         for(Product p: ProductService.getAllProducts())
@@ -255,6 +272,7 @@ public class RegisterController {
     }
     @PostMapping("/adaugare")
     public String addProd(@ModelAttribute Product produsul, Model model) {
+        model.addAttribute("numem",new Numem());
         model.addAttribute("user", new User());
         model.addAttribute("produse",ProductService.getAllProducts());
         model.addAttribute("produsul",produsul);
@@ -274,6 +292,7 @@ public class RegisterController {
     }
     @PostMapping("/stergere")
     public String removeProd(@ModelAttribute Product produsul, Model model) {
+        model.addAttribute("numem",new Numem());
         model.addAttribute("user", new User());
         model.addAttribute("produse",ProductService.getAllProducts());
         model.addAttribute("produsul",produsul);
@@ -295,6 +314,7 @@ public class RegisterController {
     public String adminStergereProdus(@ModelAttribute Product produsul, Model model,@RequestParam(value="numeB",required = false)String k) {
         model.addAttribute("user",new User());
         model.addAttribute("produse",ProductService.getAllProducts());
+        model.addAttribute("numem",new Numem());
         model.addAttribute("ok", Boolean.TRUE);
         model.addAttribute("orders",OrderService.getAllOrders());
         model.addAttribute("produsul",produsul);
@@ -312,6 +332,7 @@ public class RegisterController {
     public String adminStergereProdus2(@ModelAttribute Product produsul, Model model,@RequestParam(value="numeB",required = false)String k) {
         model.addAttribute("user",new User());
         model.addAttribute("produse",ProductService.getAllProducts());
+        model.addAttribute("numem",new Numem());
         model.addAttribute("ok", Boolean.TRUE);
         model.addAttribute("orders",OrderService.getAllOrders());
         model.addAttribute("produsul",produsul);
@@ -330,6 +351,7 @@ public class RegisterController {
         model.addAttribute("user",new User());
         model.addAttribute("ok", Boolean.TRUE);
         model.addAttribute("orders",OrderService.getAllOrders());
+        model.addAttribute("numem",new Numem());
         model.addAttribute("produsul",produsul);
         System.out.println(k+" aaA");
         ArrayList<Product> l=new ArrayList<Product>();
@@ -349,6 +371,7 @@ public class RegisterController {
         model.addAttribute("user",new User());
         model.addAttribute("ok", Boolean.TRUE);
         model.addAttribute("orders",OrderService.getAllOrders());
+        model.addAttribute("numem",new Numem());
         model.addAttribute("produsul",produsul);
         System.out.println(k+" aaA");
         ArrayList<Product> l=new ArrayList<Product>();
@@ -371,6 +394,7 @@ public class RegisterController {
     public String incprod(@ModelAttribute Product produsul, Model model,@RequestParam(value="numeB",required = false)String k) {
         model.addAttribute("user",new User());
         model.addAttribute("ok", Boolean.TRUE);
+        model.addAttribute("numem",new Numem());
         model.addAttribute("orders",OrderService.getAllOrders());
         model.addAttribute("produsul",produsul);
         System.out.println(k+" aaA");
@@ -395,6 +419,7 @@ public class RegisterController {
         model.addAttribute("user",new User());
         model.addAttribute("produse",ProductService.getAllProducts());
         model.addAttribute("ok", Boolean.TRUE);
+        model.addAttribute("numem",new Numem());
         model.addAttribute("orders",OrderService.getAllOrders());
         model.addAttribute("produsul",produsul);
         OrderService.removeAllOrders();
@@ -406,6 +431,7 @@ public class RegisterController {
         model.addAttribute("user",new User());
         model.addAttribute("ok", Boolean.TRUE);
         model.addAttribute("produsul",produsul);
+        model.addAttribute("numem",new Numem());
         Order o=OrderService.getAllOrders().get(i);
         orderRepository.remove(o);
         model.addAttribute("orders",OrderService.getAllOrders());
@@ -417,6 +443,7 @@ public class RegisterController {
         model.addAttribute("user",new User());
         model.addAttribute("ok", Boolean.TRUE);
         model.addAttribute("produse",ProductService.getAllProducts());
+        model.addAttribute("numem",new Numem());
         model.addAttribute("produsul",produsul);
         Order o=OrderService.getAllOrders().get(i);
         orderRepository.remove(o);
@@ -429,6 +456,7 @@ public class RegisterController {
         model.addAttribute("ok", Boolean.TRUE);
         model.addAttribute("produsul",produsul);
         System.out.println(k+" aaA");
+        model.addAttribute("numem",new Numem());
         ArrayList<Order> l=new ArrayList<Order>();
         for(Order x: OrderService.getAllOrders())
         {
@@ -443,6 +471,7 @@ public class RegisterController {
         model.addAttribute("user",new User());
         model.addAttribute("ok", Boolean.TRUE);
         model.addAttribute("produsul",produsul);
+        model.addAttribute("numem",new Numem());
         model.addAttribute("orders",OrderService.getAllOrders());
         ArrayList<Product> l= OrderService.getAllOrders().get(i).lista;
         model.addAttribute("produse",l);
@@ -453,6 +482,7 @@ public class RegisterController {
         model.addAttribute("user",new User());
         model.addAttribute("ok", Boolean.TRUE);
         model.addAttribute("produsul",produsul);
+        model.addAttribute("numem",new Numem());
         model.addAttribute("orders",OrderService.getAllOrders());
         Order o=new Order();
         for(Order x:OrderService.getAllOrders())
@@ -470,6 +500,7 @@ public class RegisterController {
     public String modifyadmin(@ModelAttribute Product produsul, Model model,@RequestParam(value="numeB",required = false)String k) throws ProductDoesNotExist {
         model.addAttribute("user",new User());
         model.addAttribute("ok", Boolean.TRUE);
+        model.addAttribute("numem",new Numem());
         model.addAttribute("orders",OrderService.getAllOrders());
         Product p=new Product();
         for(Product x:ProductService.getAllProducts())
@@ -485,10 +516,87 @@ public class RegisterController {
     public String modificareaadmin(@ModelAttribute Product produsul, Model model,@RequestParam(value="numeB",required = false)String k) throws ProductDoesNotExist, ProductAlreadyExistsException {
         model.addAttribute("user",new User());
         model.addAttribute("ok", Boolean.TRUE);
+        model.addAttribute("numem",new Numem());
         model.addAttribute("orders",OrderService.getAllOrders());
         model.addAttribute("produsul",produsul);
         ProductService.addProduct(produsul.getName(),produsul.getCategory(),produsul.getCode(),produsul.getQuantity(),produsul.getPrice());
         model.addAttribute("produse",ProductService.getAllProducts());
         return "adminHome";
+    }
+    @Autowired
+    private JavaMailSender emailSender;
+    @Bean
+    public JavaMailSender getJavaMailSender() {
+        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+        mailSender.setHost("smtp.gmail.com");
+        mailSender.setPort(587);
+
+        mailSender.setUsername("noreplymarketapplication@gmail.com");
+        mailSender.setPassword("ParolaPtSite1234");
+
+        Properties props = mailSender.getJavaMailProperties();
+        ((Properties) props).put("mail.transport.protocol", "smtp");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.debug", "true");
+
+        return mailSender;
+    }
+
+    @PostMapping("/sendEmail")
+    public String sendemail(@ModelAttribute Numem numem,Model model) {
+
+        model.addAttribute("produsul",new Product());
+        model.addAttribute("orders",OrderService.getAllOrders());
+        model.addAttribute("user", new User());
+        model.addAttribute("ok", Boolean.FALSE);
+        model.addAttribute("ok2", Boolean.FALSE);
+        model.addAttribute("produse",ProductService.getAllProducts());
+        model.addAttribute("numem",numem);
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("noreplymarketapplication@gmail.com");
+        message.setTo("bancila.emanuel953@gmail.com");
+        message.setSubject("Email from:"+numem.email+" "+numem.nume);
+        message.setText("Email from:"+numem.email+" "+numem.nume+"\nCommented:\n"+numem.comment);
+        emailSender.send(message);
+        message = new SimpleMailMessage();
+        message.setFrom("noreplymarketapplication@gmail.com");
+        message.setTo(numem.email);
+        message.setSubject("You commented on supermarket application site");
+        message.setText("Commented:\n"+numem.comment);
+        emailSender.send(message);
+        return "index";
+    }
+    @PostMapping("/sendEmail2")
+    public String sendemail2(@ModelAttribute Numem numem,Model model) {
+
+        model.addAttribute("produsul",new Product());
+        model.addAttribute("orders",OrderService.getAllOrders());
+        model.addAttribute("user", new User());
+        model.addAttribute("ok", Boolean.FALSE);
+        model.addAttribute("ok2", Boolean.FALSE);
+        model.addAttribute("produse",ProductService.getAllProducts());
+        model.addAttribute("numem",numem);
+        numem.nume=userLogat;
+        User k=new User();
+        for(User u:UserService.getAllUsers())
+        {
+            if(u.getName().equals(userLogat))
+                k=u;
+        }
+        numem.email=k.getEmail();
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("noreplymarketapplication@gmail.com");
+        message.setTo("bancila.emanuel953@gmail.com");
+        message.setSubject("Email from:"+numem.email+" "+numem.nume);
+        message.setText("Email from:"+numem.email+" "+numem.nume+"\nCommented:\n"+numem.comment);
+        emailSender.send(message);
+        message = new SimpleMailMessage();
+        message.setFrom("noreplymarketapplication@gmail.com");
+        message.setTo(numem.email);
+        message.setSubject("You commented on supermarket application site");
+        message.setText("Commented:\n"+numem.comment);
+        emailSender.send(message);
+        return "clientHome";
     }
 }

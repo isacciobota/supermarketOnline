@@ -137,25 +137,22 @@
             <p><span class="glyphicon glyphicon-envelope"></span> freshmarket@gmail.com</p>
         </div>
         <div class="col-sm-7 slideanim">
+            <form action="#" th:action="@{/sendEmail}" th:object="${numem}" method="post">
             <div class="row">
                 <div class="col-sm-6 form-group">
-                    <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
+                    <input class="form-control" id="name" name="name" placeholder="Name" th:field="*{nume}" type="text" required>
                 </div>
                 <div class="col-sm-6 form-group">
-                    <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+                    <input class="form-control" id="email" name="email" placeholder="Email" th:field="*{email}" type="email" required>
                 </div>
-            </div>
-            <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea><br>
+            <textarea class="form-control" id="comments" name="comments" placeholder="Comment" th:field="*{comment}" rows="5"></textarea><br>
             <div class="row">
                 <div class="col-sm-12 form-group">
-                    <button class="btn btn-default btn-outline-danger" type="submit">Send</button>
+                        <button class="btn btn-default btn-outline-danger" type="submit">Send</button>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-</div>
-
+            </form>
 <hr>
 
 <div style="text-align:center; margin-bottom:50px;">
