@@ -271,7 +271,7 @@ public class RegisterController {
         return "clientHome";
     }
     @PostMapping("/adaugare")
-    public String addProd(@ModelAttribute Product produsul, Model model) {
+    public String addProd(@ModelAttribute Product produsul, Model model) throws ProductDoesNotExist {
         model.addAttribute("numem",new Numem());
         model.addAttribute("user", new User());
         model.addAttribute("produse",ProductService.getAllProducts());
@@ -284,8 +284,16 @@ public class RegisterController {
         }
         catch (ProductAlreadyExistsException e)
         {
+            Product p=new Product();
+            for(Product x:ProductService.getAllProducts())
+            {
+                if(produsul.getName().equals(x.getName()))
+                    p=x;
+            }
+            ProductService.removeProduct(p.getName());
+            model.addAttribute("produsul",p);
             model.addAttribute("produse",ProductService.getAllProducts());
-            return "indexRegisterGresit";
+            return "modifyProduct";
         }
         model.addAttribute("produse",ProductService.getAllProducts());
         return "adminHome";
