@@ -44,6 +44,7 @@
                 <th scope="col">#</th>
                 <th scope="col">User</th>
                 <th scope="col">Total</th>
+                <th scope="col">View Products</th>
                 <th scope="col">Remove Order</th>
             </tr>
             </thead>
@@ -53,7 +54,9 @@
                 <td style="margin-top:0px"><form action="#" th:action="@{/adminuser}" th:object="${order}" method="post">
                 <button type="submit" style="margin-top:0px" th:value="${order.user}"  class="numeUtilizator"  th:name="numeB" th:text="${order.user}"></button></form>
             </td>
-                <td th:text="${order.pretTotal()}">&#36;</td>
+                <td th:text="${order.pretTotal()}">&#36;</td><td><form action="#" th:action="@{/seeproducts3}" th:object="${order}" method="post">
+                <button type="submit" style="margin-top:0px" th:value="${i.index}"  class="btn btn-outline-danger btn-round"  th:name="numeB">View</button></form>
+            </td>
                 <td><form action="#" th:action="@{/removeorder}" th:object="${order}" method="post">
                 <button type="submit" style="margin-top:0px" th:value="${i.index}"  class="btn btn-outline-danger btn-round"  th:name="numeB">Remove</button></form>
             </td>

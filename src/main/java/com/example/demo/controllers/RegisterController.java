@@ -496,6 +496,17 @@ public class RegisterController {
         System.out.println(o.lista);
         return "productsClient";
     }
+    @PostMapping("/seeproducts3")
+    public String seeproductsadmin3(@ModelAttribute Product produsul, Model model,@RequestParam(value="numeB",required = false)Integer i) {
+        model.addAttribute("user",new User());
+        model.addAttribute("ok", Boolean.TRUE);
+        model.addAttribute("produsul",produsul);
+        model.addAttribute("numem",new Numem());
+        model.addAttribute("orders",OrderService.getAllOrders());
+        ArrayList<Product> l= OrderService.getAllOrders().get(i).lista;
+        model.addAttribute("produse",l);
+        return "productsAdmin2";
+    }
     @PostMapping("/modify")
     public String modifyadmin(@ModelAttribute Product produsul, Model model,@RequestParam(value="numeB",required = false)String k) throws ProductDoesNotExist {
         model.addAttribute("user",new User());
